@@ -52,6 +52,7 @@ export class StreamVideoClient {
   };
 
   listCallTypes = () => {
+    console.log('it worked');
     return this.videoServerSideApiClient.listCallTypes();
   };
 
