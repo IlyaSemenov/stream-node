@@ -123,9 +123,9 @@ export interface ActionLogResponse {
 
   review_queue_item?: ReviewQueueItem;
 
-  target_user?: UserObject;
+  target_user?: User;
 
-  user?: UserObject;
+  user?: User;
 }
 
 export interface AggregatedStats {
@@ -1851,7 +1851,7 @@ export interface DeactivateUserRequest {
 export interface DeactivateUserResponse {
   duration: string;
 
-  user?: UserObject;
+  user?: User;
 }
 
 export interface DeactivateUsersRequest {
@@ -2167,7 +2167,7 @@ export interface ExportUserResponse {
 
   reactions?: Reaction[];
 
-  user?: UserObject;
+  user?: User;
 }
 
 export interface ExportUsersRequest {
@@ -3317,7 +3317,7 @@ export interface MessageFlagResponse {
 
   moderation_result?: MessageModerationResult;
 
-  reviewed_by?: UserObject;
+  reviewed_by?: User;
 
   user?: UserObject;
 }
@@ -4023,7 +4023,7 @@ export interface PollResponseData {
 
   max_votes_allowed?: number;
 
-  created_by?: UserObject;
+  created_by?: User;
 }
 
 export interface PollVote {
@@ -4775,7 +4775,7 @@ export interface ReactivateUserRequest {
 export interface ReactivateUserResponse {
   duration: string;
 
-  user?: UserObject;
+  user?: User;
 }
 
 export interface ReactivateUsersRequest {
@@ -5399,7 +5399,7 @@ export interface ThreadResponse {
 
   channel?: ChannelResponse;
 
-  created_by?: UserObject;
+  created_by?: User;
 
   parent_message?: Message;
 }
@@ -5469,7 +5469,7 @@ export interface ThreadStateResponse {
 
   channel?: ChannelResponse;
 
-  created_by?: UserObject;
+  created_by?: User;
 
   parent_message?: Message;
 }
@@ -5761,6 +5761,8 @@ export interface UpdateAppRequest {
   image_moderation_enabled?: boolean;
 
   migrate_permissions_to_v2?: boolean;
+
+  moderation_enabled?: boolean;
 
   moderation_webhook_url?: string;
 
@@ -6293,6 +6295,46 @@ export interface UpsertPushProviderResponse {
   push_provider: PushProviderResponse;
 }
 
+export interface User {
+  banned: boolean;
+
+  created_at: Date;
+
+  id: string;
+
+  online: boolean;
+
+  role: string;
+
+  updated_at: Date;
+
+  custom: Record<string, any>;
+
+  ban_expires?: Date;
+
+  deactivated_at?: Date;
+
+  deleted_at?: Date;
+
+  image?: string;
+
+  invisible?: boolean;
+
+  language?: string;
+
+  last_active?: Date;
+
+  name?: string;
+
+  revoke_tokens_issued_before?: Date;
+
+  teams?: string[];
+
+  privacy_settings?: PrivacySettings;
+
+  push_notifications?: PushNotificationSettings;
+}
+
 export interface UserBlock {
   blocked_by_user_id: string;
 
@@ -6336,9 +6378,9 @@ export interface UserMuteResponse {
 
   expires?: Date;
 
-  target?: UserObject;
+  target?: User;
 
-  user?: UserObject;
+  user?: User;
 }
 
 export interface UserObject {
@@ -6440,7 +6482,7 @@ export interface UserResponse {
 
   revoke_tokens_issued_before?: Date;
 
-  push_notifications?: PushNotificationSettings;
+  push_notifications?: PushNotificationSettingsResponse;
 }
 
 export interface UserSessionStats {
